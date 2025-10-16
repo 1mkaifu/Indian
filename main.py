@@ -1,12 +1,25 @@
 # filename: calltracer_api_final.py
 # Make by @ig_banz
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import requests
 from bs4 import BeautifulSoup
 import re
 
 app = Flask(__name__)
+
+# --- यह नया कोड यहाँ जोड़ा गया है ---
+@app.route("/", methods=["GET"])
+def home():
+    """मुख्य पेज जो API के बारे में जानकारी देता है"""
+    return jsonify({
+        "message": "api chori krne yha tak aa gya babu😁",
+        "usage": "Number track karne ke liye /track/<number> endpoint use karo.",
+        "example": f"{request.url_root}track/YOUR_NUMBER",
+        "made_by": "@ig_banz"
+    })
+# --- नया कोड यहाँ खत्म ---
+
 
 @app.route("/track/<number>", methods=["GET"])
 def track_number(number):
